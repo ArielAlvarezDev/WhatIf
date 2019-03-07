@@ -1,0 +1,36 @@
+﻿@model WhatIf.ViewModels.XkcdComicVM
+
+@{
+    ViewBag.Title = "Comic";
+}
+
+<div class="row">
+    <div class="span6" style="float: none; margin: 0 auto;">
+        @if (Model.PrevId > 0)
+        {
+            var action = Html.ActionLink("Previous", "Comic", "Home", new { @idComic = Model.PrevId }, new { @class = "btn btn-default" });
+            Write(action);
+        }
+        @if (Model.NextId > 0)
+        {
+            var raw = Html.Raw(Html.ActionLink("Next", "Comic", "Home", new { @idComic = Model.NextId }, new { @class = "btn btn-default" }));
+            Write(raw);
+        }
+        <h2>@Model.Comic.Safe_Title</h2>
+        <img src="@Url.Content(Model.Comic.Img)" alt="@Model.Comic.Alt" />
+        <p>@Model.Comic.Alt</p>
+    </div>
+
+    @if (Model.PrevId > 0)
+    {
+        var action = Html.ActionLink("Previous", "Comic", "Home", new { @idComic = Model.PrevId }, new { @class = "btn btn-default" });
+        Write(action);
+    }
+
+    @if (Model.NextId > 0)
+    {
+        var raw = Html.Raw(Html.ActionLink("Next", "Comic", "Home", new { @idComic = Model.NextId }, new { @class = "btn btn-default" }));
+        Write(raw);
+    }
+
+</div>
